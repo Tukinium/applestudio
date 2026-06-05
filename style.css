@@ -211,6 +211,8 @@ body {
 .link-card.youtube .link-icon { background: #ff4d5e; }
 .link-card.x { border-color: #d3d8de; }
 .link-card.x .link-icon { background: #1a1a1a; }
+.link-card.vrchat { border-color: #b3e0f2; }
+.link-card.vrchat .link-icon { background: #1f9ed4; }
 .link-text { display: flex; flex-direction: column; }
 .link-label { font-weight: 700; font-size: 1.05rem; }
 .link-sub { font-size: 0.84rem; color: var(--text-soft); }
