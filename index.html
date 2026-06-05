@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>アップルスタジオ｜AppleStudio</title>
+  <meta name="description" content="VRChatグループ「アップルスタジオ（AppleStudio）」の公式ページ。メンバー紹介、公式YouTube・Xはこちらから。" />
+
+  <!-- OGP -->
+  <meta property="og:title" content="アップルスタジオ｜AppleStudio" />
+  <meta property="og:description" content="VRChatグループ「アップルスタジオ」の公式ページ" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ふわふわ背景の飾り -->
+  <div class="bg-decor" aria-hidden="true">
+    <span class="apple a1">🍎</span>
+    <span class="apple a2">🍏</span>
+    <span class="apple a3">🍎</span>
+    <span class="apple a4">🍏</span>
+    <span class="apple a5">🍎</span>
+  </div>
+
+  <!-- ヒーロー -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="logo-badge">🍎</div>
+      <h1 class="title">アップルスタジオ</h1>
+      <p class="subtitle">AppleStudio</p>
+      <p class="tagline">VRChatで、みんなでわいわい楽しく活動中！</p>
+      <a href="#members" class="cta">メンバーを見る ↓</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- メンバー -->
+    <section id="members" class="section">
+      <h2 class="section-title"><span class="emoji">🍎</span> メンバー</h2>
+      <p class="section-lead">アップルスタジオの愉快な仲間たちを紹介します！</p>
+
+      <div class="member-grid">
+        <!-- ▼▼ メンバーごとにこのカードをコピーして使えます ▼▼ -->
+        <div class="member-card">
+          <div class="avatar">🍎</div>
+          <h3 class="member-name">メンバー名1</h3>
+          <p class="member-role">担当・ひとこと</p>
+        </div>
+        <div class="member-card">
+          <div class="avatar">🍏</div>
+          <h3 class="member-name">メンバー名2</h3>
+          <p class="member-role">担当・ひとこと</p>
+        </div>
+        <div class="member-card">
+          <div class="avatar">🍎</div>
+          <h3 class="member-name">メンバー名3</h3>
+          <p class="member-role">担当・ひとこと</p>
+        </div>
+        <div class="member-card">
+          <div class="avatar">🍏</div>
+          <h3 class="member-name">メンバー名4</h3>
+          <p class="member-role">担当・ひとこと</p>
+        </div>
+        <!-- ▲▲ ここまで ▲▲ -->
+      </div>
+    </section>
+
+    <!-- 公式リンク -->
+    <section id="links" class="section">
+      <h2 class="section-title"><span class="emoji">💖</span> 公式リンク</h2>
+      <p class="section-lead">最新情報はこちらをチェック！</p>
+
+      <div class="link-grid">
+        <a class="link-card youtube" href="#" target="_blank" rel="noopener">
+          <div class="link-icon">▶</div>
+          <div class="link-text">
+            <span class="link-label">公式YouTubeチャンネル</span>
+            <span class="link-sub">動画・配信はこちら</span>
+          </div>
+        </a>
+
+        <a class="link-card x" href="#" target="_blank" rel="noopener">
+          <div class="link-icon">𝕏</div>
+          <div class="link-text">
+            <span class="link-label">公式X（旧Twitter）</span>
+            <span class="link-sub">お知らせ・つぶやき</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>🍎 アップルスタジオ / AppleStudio 🍏</p>
+    <p class="copyright">© <span id="year"></span> AppleStudio. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
