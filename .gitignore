@@ -1,0 +1,19 @@
+# ===== ログ（サーバー稼働で生成・コミット不要）=====
+*.log
+
+# ===== サービスラッパー実行ファイル（installerが再取得可能・サイズ大）=====
+caddy-service.exe
+
+# ===== 未使用の書き出し素材（スクラッチ）=====
+GroupIcon-anim.webm
+GroupIcon-anim.webp
+
+# ===== OS / エディタ生成物 =====
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ===== 作業中の一時ファイル =====
+__probe.txt
+_t.tmp
+deploy.log

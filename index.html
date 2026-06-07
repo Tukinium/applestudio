@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AppleStudio｜VRChat グループ</title>
+<meta name="description" content="VRChatグループ「AppleStudio」の公式ページ。グループ紹介・イベント・メンバー・参加方法をご案内します。">
+<meta property="og:title" content="AppleStudio｜VRChat グループ">
+<meta property="og:description" content="VRChatグループ「AppleStudio」の公式ページ">
+<meta property="og:type" content="website">
+<meta property="og:image" content="GroupIcon.png">
+<link rel="icon" type="image/png" href="GroupIcon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ffb7c5;
+  --pink-soft:#ffd9e1;
+  --cream:#fff8f3;
+  --mint:#bdeccf;
+  --lav:#d7c8f5;
+  --yellow:#ffe7a3;
+  --red:#ff6b81;
+  --text:#5a4a52;
+  --text-soft:#8a7a82;
+  --white:#ffffff;
+  --shadow:0 10px 30px rgba(255,150,170,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Zen Maru Gothic',sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 12% 12%, #fff2d6 0, transparent 28%),
+    radial-gradient(circle at 88% 8%, #ffe0e9 0, transparent 30%),
+    radial-gradient(circle at 50% 100%, #e6dcff 0, transparent 40%),
+    var(--cream);
+  line-height:1.9;
+  overflow-x:hidden;
+}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:'Mochiy Pop One',sans-serif;font-weight:400;line-height:1.5}
+
+/* ===== Header / Nav ===== */
+header.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,248,243,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:2px dashed var(--pink-soft);
+}
+header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Mochiy Pop One';font-size:1.15rem;color:var(--red)}
+.logo .logo-img{height:40px;width:auto;display:block}
+nav ul{display:flex;gap:6px;list-style:none;flex-wrap:wrap}
+nav a{
+  text-decoration:none;color:var(--text);font-size:.92rem;
+  padding:7px 13px;border-radius:999px;transition:.2s;
+}
+nav a:hover{background:var(--pink-soft);color:var(--red)}
+nav a.nav-ext{font-size:1.15rem;padding:7px 11px;line-height:1}
+nav .sep{width:2px;height:22px;background:var(--pink-soft);border-radius:2px;margin:0 4px;align-self:center}
+
+/* ===== Hero ===== */
+.hero{text-align:center;padding:78px 0 60px;position:relative}
+.hero .badge{
+  display:inline-block;background:var(--white);color:var(--red);
+  font-size:.82rem;padding:6px 16px;border-radius:999px;
+  box-shadow:var(--shadow);margin-bottom:22px;
+}
+.hero-logo-wrap{position:relative;width:min(440px,76vw);aspect-ratio:1/1;margin:0 auto 6px;background:#fbdfdd;border-radius:30px;filter:drop-shadow(0 14px 26px rgba(255,120,150,.38));animation:bob 3.6s ease-in-out infinite;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hero-logo-wrap:hover{filter:drop-shadow(0 16px 30px rgba(255,107,129,.5))}
+.hero-logo-wrap video,.hero-logo-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:30px;display:block}
+.hero-logo-wrap #heroStatic{z-index:1}
+.hero-logo-wrap #heroVideo{z-index:2}
+.logo-hint{font-size:.78rem;color:var(--text-soft);margin-top:-2px}
+.logo-hint .tap{color:var(--red)}
+.hero h1{font-size:clamp(1.5rem,4.5vw,2.4rem);color:var(--red);letter-spacing:.04em}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-12px) rotate(1.5deg)}}
+.hero p.lead{font-size:1.1rem;color:var(--text-soft);margin:18px auto 0;max-width:620px}
+.hero .cta{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;font-family:'Mochiy Pop One';
+  font-size:.95rem;padding:14px 30px;border-radius:999px;transition:.25s;
+  box-shadow:var(--shadow);
+}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{transform:translateY(-3px) scale(1.03);background:#ff5572}
+.btn-ghost{background:#fff;color:var(--red);border:2px solid var(--pink)}
+.btn-ghost:hover{transform:translateY(-3px) scale(1.03);background:var(--pink-soft)}
+
+/* floating deco */
+.float{position:absolute;font-size:1.8rem;opacity:.65;animation:floaty 6s ease-in-out infinite}
+.float:nth-child(1){top:14%;left:8%}
+.float:nth-child(2){top:24%;right:10%;animation-delay:1.5s}
+.float:nth-child(3){bottom:12%;left:14%;animation-delay:.8s}
+.float:nth-child(4){bottom:18%;right:12%;animation-delay:2.2s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+/* ===== Sections ===== */
+section{padding:56px 0}
+.sec-head{text-align:center;margin-bottom:42px}
+.sec-head .emoji{font-size:2rem}
+.sec-head h2{font-size:clamp(1.6rem,4.5vw,2.3rem);color:var(--red);margin-top:4px}
+.sec-head p{color:var(--text-soft);margin-top:8px}
+
+/* About */
+.about-card{
+  background:var(--white);border-radius:32px;padding:42px;
+  box-shadow:var(--shadow);text-align:center;
+  border:3px solid var(--pink-soft);
+}
+.about-card p{font-size:1.05rem}
+.about-card p + p{margin-top:16px}
+.tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.tag{background:var(--pink-soft);color:var(--red);padding:7px 16px;border-radius:999px;font-size:.85rem}
+
+/* Events */
+.events{display:grid;gap:20px}
+.event{
+  background:var(--white);border-radius:24px;padding:26px 28px;
+  box-shadow:var(--shadow);display:flex;gap:22px;align-items:center;
+  border-left:8px solid var(--pink);transition:.25s;
+}
+.event:hover{transform:translateX(6px)}
+.event .day{
+  flex-shrink:0;width:84px;height:84px;border-radius:20px;
+  background:linear-gradient(135deg,var(--pink),var(--red));color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.event .day .w{font-size:.78rem}
+.event .day .d{font-family:'Mochiy Pop One';font-size:1.5rem;line-height:1}
+.event .info h3{font-size:1.15rem;color:var(--text)}
+.event .info p{color:var(--text-soft);font-size:.92rem}
+.event .info .time{display:inline-block;background:var(--mint);color:#3a8a5c;font-size:.78rem;padding:3px 12px;border-radius:999px;margin-top:6px}
+.event.today{border-left-color:var(--red);box-shadow:0 10px 30px rgba(255,107,129,.28)}
+.event .info .badge-today{display:inline-block;background:var(--red);color:#fff;font-size:.72rem;padding:2px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+/* events divider */
+.events-divider{display:flex;align-items:center;gap:14px;margin:8px 2px}
+.events-divider::before,.events-divider::after{content:"";flex:1;height:3px;border-radius:3px;background:repeating-linear-gradient(90deg,var(--pink-soft) 0 10px,transparent 10px 18px)}
+.events-divider .pill{font-family:'Mochiy Pop One';font-size:.9rem;color:var(--red);background:var(--white);border:2px solid var(--pink-soft);padding:5px 20px;border-radius:999px;box-shadow:var(--shadow)}
+
+/* ===== Calendar ===== */
+.calendar{background:var(--white);border-radius:28px;padding:20px;box-shadow:var(--shadow);border:3px solid var(--pink-soft)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.cal-cell{background:var(--cream);border-radius:16px;padding:12px 8px 14px;min-height:160px;display:flex;flex-direction:column;border:2px solid transparent;transition:.2s}
+.cal-cell:hover{transform:translateY(-3px);border-color:var(--pink-soft)}
+.cal-head{text-align:center;border-bottom:2px dashed var(--pink-soft);padding-bottom:8px;margin-bottom:8px}
+.cal-head .dow{display:block;font-family:'Mochiy Pop One';font-size:.8rem}
+.cal-head .dnum{display:block;font-family:'Mochiy Pop One';font-size:1.5rem;line-height:1.1;color:var(--text)}
+.cal-cell.sat .dow,.cal-cell.sat .dnum{color:#4a90d9}
+.cal-cell.sun .dow,.cal-cell.sun .dnum{color:var(--red)}
+.cal-cell.today{background:#fff;border-color:var(--red);box-shadow:0 8px 22px rgba(255,107,129,.25)}
+.cal-cell.today .cal-head .dnum{color:var(--red)}
+.cal-body{display:flex;flex-direction:column;gap:6px}
+.cal-event{background:var(--pink-soft);color:var(--red);border-radius:10px;padding:6px 8px;font-size:.74rem;line-height:1.4}
+.cal-event .t{display:block;font-size:.66rem;color:var(--text-soft)}
+@media(max-width:680px){
+  .cal-grid{grid-template-columns:1fr;gap:8px}
+  .cal-cell{flex-direction:row;align-items:center;min-height:auto;gap:14px;padding:10px 14px}
+  .cal-head{border-bottom:none;border-right:2px dashed var(--pink-soft);padding:0 14px 0 0;margin:0;flex-shrink:0;width:62px}
+  .cal-body{flex:1}
+}
+
+/* Members */
+.members{
+  display:flex;gap:20px;overflow-x:auto;
+  padding:6px 4px 20px;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+  scrollbar-color:var(--pink) var(--pink-soft);scrollbar-width:thin;
+}
+.members::-webkit-scrollbar{height:10px}
+.members::-webkit-scrollbar-track{background:var(--pink-soft);border-radius:999px}
+.members::-webkit-scrollbar-thumb{background:var(--pink);border-radius:999px}
+.members::-webkit-scrollbar-thumb:hover{background:var(--red)}
+.scroll-hint{text-align:center;color:var(--text-soft);font-size:.82rem;margin-bottom:14px}
+.member{
+  flex:0 0 190px;scroll-snap-align:start;
+  background:var(--white);border-radius:26px;padding:30px 20px;text-align:center;
+  box-shadow:var(--shadow);transition:.25s;border:3px solid transparent;
+}
+.member:hover{transform:translateY(-6px);border-color:var(--pink)}
+.member .avatar{
+  width:88px;height:88px;border-radius:50%;margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;font-size:2.4rem;
+  background:linear-gradient(135deg,var(--pink-soft),var(--lav));
+}
+.member h3{font-size:1.1rem;color:var(--text)}
+.member .role{color:var(--red);font-size:.85rem;font-family:'Mochiy Pop One'}
+.member p{font-size:.85rem;color:var(--text-soft);margin-top:8px}
+
+/* Join */
+.join{
+  background:linear-gradient(135deg,#fff,var(--pink-soft));
+  border-radius:36px;padding:50px 40px;text-align:center;
+  box-shadow:var(--shadow);border:3px dashed var(--pink);
+}
+.join h2{color:var(--red);font-size:clamp(1.6rem,4.5vw,2.3rem)}
+.join p{color:var(--text-soft);margin:14px auto 0;max-width:560px}
+.join-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.join-links a{
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+  background:#fff;color:var(--text);padding:14px 26px;border-radius:999px;
+  font-family:'Mochiy Pop One';font-size:.92rem;box-shadow:var(--shadow);transition:.25s;
+}
+.join-links a:hover{transform:translateY(-4px) scale(1.04)}
+.join-links a .ic{font-size:1.3rem}
+
+/* Footer */
+footer{text-align:center;padding:48px 0 60px;color:var(--text-soft);font-size:.85rem}
+footer .heart{color:var(--red)}
+
+/* edit note */
+.note{max-width:980px;margin:30px auto 0;padding:0 22px}
+.note details{background:#fff;border:2px dashed var(--mint);border-radius:18px;padding:14px 20px;font-size:.85rem;color:var(--text-soft)}
+.note summary{cursor:pointer;color:#3a8a5c;font-family:'Mochiy Pop One'}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top"><img class="logo-img" src="GroupIcon.png" alt="あぷた！">AppleStudio</a>
+    <nav>
+      <ul>
+        <li><a href="#about">紹介</a></li>
+        <li><a href="#events">イベント</a></li>
+        <li><a href="#members">メンバー</a></li>
+        <li class="sep"></li>
+        <li><a class="nav-ext" href="https://vrchat.com/home/group/grp_2c8e0275-31ff-4c8a-903c-f8aec735f6f9" target="_blank" rel="noopener" title="VRChat グループ" aria-label="VRChat グループ">🌐</a></li>
+        <li><a class="nav-ext" href="https://x.com/Apst_vrc" target="_blank" rel="noopener" title="X (Twitter)" aria-label="X (Twitter)">🐦</a></li>
+        <li><a class="nav-ext" href="https://www.youtube.com/@Apst_vrc" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">▶️</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<div id="top" class="hero">
+  <span class="float">🍎</span>
+  <span class="float">✨</span>
+  <span class="float">🌸</span>
+  <span class="float">💗</span>
+  <div class="wrap">
+    <span class="badge">🍎 VRChat Group</span>
+    <div class="hero-logo-wrap" id="heroLogoWrap" role="button" tabindex="0" title="クリックでもう一度再生（音あり）">
+      <img id="heroStatic" src="GroupIcon-rest.png" alt="あぷた！ AppleStudio ロゴ">
+      <video id="heroVideo" muted playsinline preload="auto" poster="GroupIcon-rest.png">
+        <source src="GroupIcon.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="logo-hint"><span class="tap">♪</span> ロゴをクリックでもう一度再生（音あり）</p>
+    <h1>AppleStudio</h1>
+    <p class="lead">VRChatで集まる、あったかくてゆるっと楽しいコミュニティ。<br>初心者さんも大歓迎！みんなでわいわい遊びましょう♪</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://vrchat.com/home/group/grp_2c8e0275-31ff-4c8a-903c-f8aec735f6f9" target="_blank" rel="noopener">VRChatグループを見る</a>
+      <a class="btn btn-ghost" href="#about">どんなグループ？</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="emoji">🍎</div>
+      <h2>AppleStudioって？</h2>
+      <p>わたしたちのコンセプト</p>
+    </div>
+    <div class="about-card">
+      <p>AppleStudioは、VRChatを中心に活動している交流グループです。<br>
+      「気軽に集まれる、第二のおうちみたいな場所」をテーマに、日々のおしゃべりからイベントまで、みんなで楽しい時間を作っています。</p>
+      <p>ワールド巡り、写真撮影、雑談、ゲーム…やりたいことはいつもメンバー発信。<br>
+      VR初心者の方も、ベテランの方も、のんびり過ごしたい方も、みんなが心地よくいられるグループを目指しています🍎</p>
+      <div class="tags">
+        <span class="tag">#初心者歓迎</span>
+        <span class="tag">#まったり</span>
+        <span class="tag">#交流</span>
+        <span class="tag">#ワールド巡り</span>
+        <span class="tag">#写真</span>
+        <span class="tag">#ゲーム</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EVENTS ===== -->
+<section id="events">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="emoji">📅</div>
+      <h2>活動・イベント</h2>
+      <p>今週のスケジュール（6/1〜6/7・時間はJST）</p>
+    </div>
+    <div class="calendar">
+      <div class="cal-grid">
+        <div class="cal-cell">
+          <div class="cal-head"><span class="dow">月</span><span class="dnum">1</span></div>
+          <div class="cal-body">
+            <div class="cal-event"><span class="t">00:00〜</span>（予定を入力）</div>
+          </div>
+        </div>
+        <div class="cal-cell">
+          <div class="cal-head"><span class="dow">火</span><span class="dnum">2</span></div>
+          <div class="cal-body">
+            <div class="cal-event"><span class="t">00:00〜</span>（予定を入力）</div>
+          </div>
+        </div>
+        <div class="cal-cell">
+          <div class="cal-head"><span class="dow">水</span><span class="dnum">3</span></div>
+          <div class="cal-body">
+            <div class="cal-event"><span class="t">00:00〜</span>（予定を入力）</div>
+          </div>
+        </div>
+        <div class="cal-cell">
+          <div class="cal-head"><span class="dow">木</span><span class="dnum">4</span></div>
+          <div class="cal-body">
+            <div class="cal-event"><span class="t">00:00〜</span>（予定を入力）</div>
+          </div>
+        </div>
+        <div class="cal-cell">
+          <div class="cal-head"><span class="dow">金</span><span class="dnum">5</span></div>
+          <div class="cal-body">
+            <div class="cal-event"><span class="t">00:00〜</span>（予定を入力）</div>
+          </div>
+        </div>
+        <div class="cal-cell sat today">
+          <div class="cal-head"><span class="dow">土</span><span class="dnum">6</span></div>
+          <div class="cal-body">
+            <div class="cal-event"><span class="t">00:00〜</span>（予定を入力）</div>
+          </div>
+        </div>
+        <div class="cal-cell sun">
+          <div class="cal-head"><span class="dow">日</span><span class="dnum">7</span></div>
+          <div class="cal-body">
+            <div class="cal-event"><span class="t">00:00〜</span>（予定を入力）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEMBERS ===== -->
+<section id="members">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="emoji">💗</div>
+      <h2>メンバー・スタッフ</h2>
+      <p>総勢16名のメンバーで活動中</p>
+    </div>
+    <p class="scroll-hint">← よこにスクロールして全員を見る →</p>
+    <div class="members">
+      <div class="member">
+        <div class="avatar">🍎</div>
+        <h3>（お名前）</h3>
+        <div class="role">代表 / Owner</div>
+        <p>グループの立ち上げ人。みんなのまとめ役です。</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🌸</div>
+        <h3>（お名前）</h3>
+        <div class="role">スタッフ</div>
+        <p>イベント企画＆盛り上げ担当。</p>
+      </div>
+      <div class="member">
+        <div class="avatar">✨</div>
+        <h3>（お名前）</h3>
+        <div class="role">スタッフ</div>
+        <p>ワールド案内＆撮影担当。</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🎀</div>
+        <h3>（お名前）</h3>
+        <div class="role">スタッフ</div>
+        <p>新人さんのサポート担当。</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🌙</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">⭐</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🍓</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🐱</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🌷</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🦊</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🍰</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🌈</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🐰</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🍵</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🎮</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+      <div class="member">
+        <div class="avatar">🐧</div>
+        <h3>（お名前）</h3>
+        <div class="role">メンバー</div>
+        <p>（ひとことコメント）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="note">
+  <details>
+    <summary>📝 編集メモ（このサイトを公開する前に / ブラウザには表示されません）</summary>
+    <p style="margin-top:10px">
+      ・公式リンク：VRChatグループ・X(Twitter)・YouTube をヘッダーナビのアイコンに登録済み。変更する場合はナビの <code>nav-ext</code> リンクの <code>href</code> を書き換えてください。<br>
+      ・メンバー紹介：「（お名前）」の部分を実際のお名前に、絵文字アイコンもお好みで変更できます。<br>
+      ・イベント：曜日・時間・内容は実際の活動に合わせて編集してください。<br>
+      ・不要なセクションは、対応する <code>&lt;section&gt;</code> ごと削除すればOKです。
+    </p>
+  </details>
+</div>
+
+<footer>
+  <p>🍎 AppleStudio — VRChat Group</p>
+  <p>made with <span class="heart">♥</span> for our community</p>
+</footer>
+
+<script>
+(function(){
+  var wrap=document.getElementById('heroLogoWrap');
+  var v=document.getElementById('heroVideo');
+  var s=document.getElementById('heroStatic');
+  if(!wrap||!v||!s) return;
+  // 静止画(#heroStatic)は常に背面に常駐。動画(#heroVideo)は再生中だけ前面に表示し、
+  // 終了したら動画を隠して背面の静止画を見せる（アニメ中は不透明な動画が静止画を覆う）。
+  function hideVideo(){ v.style.display='none'; }   // 背面の静止画が見える
+  function playOnce(sound){
+    v.style.display='block';                        // 動画を前面に
+    v.muted=!sound;
+    try{ v.currentTime=0; }catch(e){}
+    var p=v.play();
+    if(p&&p.catch){ p.catch(function(){
+      // 音つき自動再生がブロックされたらミュートで再生、それも不可なら静止画を表示
+      if(sound){ v.muted=true; var p2=v.play(); if(p2&&p2.catch) p2.catch(hideVideo); }
+      else hideVideo();
+    }); }
+  }
+  v.addEventListener('ended', hideVideo);
+  // ページに訪れたとき1回だけ自動再生（音つきを試行→不可ならミュート）
+  function init(){ playOnce(true); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+  // クリック/キー操作でもう一度（ユーザー操作なので音つきで再生）
+  wrap.addEventListener('click', function(){ playOnce(true); });
+  wrap.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playOnce(true); } });
+})();
+</script>
+</body>
+</html>

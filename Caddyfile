@@ -1,0 +1,58 @@
+# ===== AppleStudio Web サーバー設定 (Caddy) =====
+# ドメイン: applestudiogogo.com（www あり/なし 両方でアクセス可）
+# セキュリティ堅牢化済み
+
+applestudiogogo.com, www.applestudiogogo.com {
+    # このCaddyfileと同じフォルダの index.html を配信
+    root * .
+    file_server
+
+    # 圧縮（表示高速化）
+    encode zstd gzip
+
+    # ---------- セキュリティヘッダー ----------
+    header {
+        # 常にHTTPSを強制（1年間）
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        # MIMEタイプ推測を禁止
+        X-Content-Type-Options "nosniff"
+        # クリックジャッキング防止（他サイトへの埋め込み禁止）
+        X-Frame-Options "DENY"
+        # リファラ情報を最小限に
+        Referrer-Policy "strict-origin-when-cross-origin"
+        # 不要なブラウザ機能を無効化
+        Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+        # コンテンツ読み込み元を制限（このサイト＋Google Fontsのみ許可）
+        Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+        # サーバーソフト名を隠す
+        -Server
+    }
+
+    # ---------- 隠しファイル・設定ファイルへのアクセスを拒否 ----------
+    # .env / .git / Caddyfile / *.ps1 などを外部から見られないようにする
+    @forbidden {
+        path /.* /Caddyfile /*.ps1 /*.log /logs/*
+    }
+    respond @forbidden "Not Found" 404
+
+    # ---------- リクエストサイズ制限（巨大リクエスト対策） ----------
+    request_body {
+        max_size 1MB
+    }
+
+    # ---------- アクセスログ（ローテーション付き） ----------
+    log {
+        output file ./access.log {
+            roll_size 10MiB
+            roll_keep 10
+            roll_keep_for 720h
+        }
+        format json
+    }
+}
+
+# --- メモ ---
+# 設定を変更したら反映するために:
+#   サービス運用中 : 管理者PowerShellで  Restart-Service caddy
+#   手動起動中     : Ctrl+C で止めて  caddy run  し直す
+# 文法チェック : caddy validate
