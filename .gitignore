@@ -1,10 +1,26 @@
-# Claude Code local settings
-.claude/
+# ===== ログ（サーバー稼働で生成・コミット不要）=====
+*.log
+deploy.log
 
-# OS files
-Thumbs.db
-.DS_Store
+# ===== サービスラッパー実行ファイル（installerが再取得可能・サイズ大）=====
+caddy-service.exe
 
-# ロゴのソース素材（書き出し済みファイルは images/ に配置）
+# ===== 未使用の書き出し素材（スクラッチ）=====
+GroupIcon-anim.webm
+GroupIcon-anim.webp
+
+# ===== ロゴのソース素材（書き出し済みファイルは images/ に配置）=====
 # 生データ(.avi)が非常に大きく GitHub に載せられないため除外
 AppleStudio Logo/
+
+# ===== Claude Code ローカル設定 =====
+.claude/
+
+# ===== OS / エディタ生成物 =====
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ===== 作業中の一時ファイル =====
+__probe.txt
+_t.tmp

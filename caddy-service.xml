@@ -1,0 +1,13 @@
+﻿<service>
+  <id>caddy</id>
+  <name>Caddy Web Server (AppleStudio)</name>
+  <description>applestudiogogo.com を公開する Caddy サーバー</description>
+  <executable>C:\Users\ServerManager\AppData\Local\Microsoft\WinGet\Packages\CaddyServer.Caddy_Microsoft.Winget.Source_8wekyb3d8bbwe\caddy.exe</executable>
+  <arguments>run</arguments>
+  <workingdirectory>E:\AppleStudioWebPages\AppleStudioWebPage</workingdirectory>
+  <startmode>Automatic</startmode>
+  <onfailure action="restart" delay="10 sec"/>
+  <log mode="roll-by-time">
+    <pattern>yyyyMMdd</pattern>
+  </log>
+</service>
