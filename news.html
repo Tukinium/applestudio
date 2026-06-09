@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>告知｜アップルスタジオ</title>
+  <meta name="description" content="VRChatグループ「アップルスタジオ」からの告知・お知らせ。最新情報はこちらをご確認ください。" />
+
+  <meta property="og:title" content="告知｜アップルスタジオ" />
+  <meta property="og:description" content="アップルスタジオからの告知・お知らせ" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/logo.png" />
+  <meta property="og:image" content="images/logo.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true">
+    <span class="apple a1">🍎</span>
+    <span class="apple a2">🍏</span>
+    <span class="apple a3">🍎</span>
+    <span class="apple a4">🍏</span>
+    <span class="apple a5">🍎</span>
+  </div>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="brand" href="index.html"><img class="brand-logo" src="images/logo.png" alt="" />アップルスタジオ</a>
+      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="news.html" class="is-active">告知</a></li>
+        <li><a href="about.html">アバウト</a></li>
+        <li><a href="members.html">メンバー</a></li>
+        <li><a href="events.html">イベント</a></li>
+        <li><a href="gallery.html">ギャラリー</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <header class="page-hero">
+    <span class="page-emoji">📢</span>
+    <h1>告知</h1>
+    <p>アップルスタジオからのお知らせ</p>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="news-list">
+        <!-- ▼▼ 告知ごとにこのカードを編集・コピーしてください ▼▼
+             news-date：日付　/　news-tag：種類（お知らせ / event / important などクラスで色が変わります） -->
+        <article class="news-card reveal">
+          <div class="news-meta">
+            <time class="news-date">2026.--.--</time>
+            <span class="news-tag important">重要</span>
+          </div>
+          <h3 class="news-title">告知タイトル（仮）</h3>
+          <p class="news-body">ここに告知の本文を書きます。重要なお知らせはこの「重要」タグで目立たせられます。</p>
+        </article>
+
+        <article class="news-card reveal">
+          <div class="news-meta">
+            <time class="news-date">2026.--.--</time>
+            <span class="news-tag event">イベント</span>
+          </div>
+          <h3 class="news-title">告知タイトル（仮）</h3>
+          <p class="news-body">ここに告知の本文を書きます。イベント関連のお知らせは「イベント」タグが付きます。</p>
+        </article>
+
+        <article class="news-card reveal">
+          <div class="news-meta">
+            <time class="news-date">2026.--.--</time>
+            <span class="news-tag">お知らせ</span>
+          </div>
+          <h3 class="news-title">告知タイトル（仮）</h3>
+          <p class="news-body">ここに告知の本文を書きます。通常のお知らせはこのタグです。</p>
+        </article>
+        <!-- ▲▲ ここまで ▲▲ -->
+      </div>
+
+      <p class="section-lead reveal" style="margin-top: 36px;">
+        最新の告知は、公式X（旧Twitter）でもお届けしています。<br />
+        <a href="https://x.com/Apst_vrc" target="_blank" rel="noopener" class="btn btn-secondary">公式Xをチェック</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="footer-nav">
+      <a href="index.html">ホーム</a>
+      <a href="news.html">告知</a>
+      <a href="about.html">アバウト</a>
+      <a href="members.html">メンバー</a>
+      <a href="events.html">イベント</a>
+      <a href="gallery.html">ギャラリー</a>
+    </nav>
+    <p>🍎 アップルスタジオ / AppleStudio 🍏</p>
+    <p class="copyright">© <span id="year"></span> AppleStudio. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

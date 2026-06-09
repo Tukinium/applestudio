@@ -4,3 +4,7 @@
 # OS files
 Thumbs.db
 .DS_Store
+
+# ロゴのソース素材（書き出し済みファイルは images/ に配置）
+# 生データ(.avi)が非常に大きく GitHub に載せられないため除外
+AppleStudio Logo/
