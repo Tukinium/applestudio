@@ -367,13 +367,13 @@ a { color: inherit; }
 /* ===== メンバー ===== */
 .member-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 28px 24px;
 }
 .member-card {
   background: var(--white);
   border-radius: var(--radius);
-  padding: 30px 18px;
+  padding: 16px 16px 20px;
   text-align: center;
   box-shadow: var(--shadow-soft);
   border: 3px solid var(--apple-pink);
@@ -383,27 +383,82 @@ a { color: inherit; }
   transform: translateY(-6px);
   box-shadow: var(--shadow);
 }
-.avatar {
-  width: 84px;
-  height: 84px;
-  margin: 0 auto 14px;
-  font-size: 2.4rem;
+
+/* 可愛い縦長写真フレーム（パステルのグラデ枠＋飾り） */
+.member-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  margin: 8px 0 18px;
+  border-radius: 22px;
+  border: 5px solid transparent;
+  background:
+    linear-gradient(var(--cream-deep), var(--cream-deep)) padding-box,
+    linear-gradient(150deg, var(--apple-pink) 0%, #ffe39a 52%, var(--apple-green) 100%) border-box;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.member-card:hover .member-photo {
+  transform: rotate(-2deg);
+  box-shadow: var(--shadow);
+}
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 17px;
+  display: block;
+}
+/* 写真がまだ無いとき（絵文字プレースホルダー） */
+.member-photo .ph {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--cream-deep);
-  border-radius: 50%;
-  overflow: hidden;
+  font-size: 3rem;
+  border-radius: 17px;
 }
-.avatar img { width: 100%; height: 100%; object-fit: cover; }
+/* 参考フレーム風の飾り（角のお花・葉っぱ・小花）をSVGで重ねる */
+.member-photo::after {
+  content: "";
+  position: absolute;
+  inset: -13px;
+  background: url("images/member-frame.svg") center / 100% 100% no-repeat;
+  pointer-events: none;
+  z-index: 3;
+}
+/* 右下のひとことコメント（右から斜め下へ傾いた強調ステッカー） */
+.member-comment {
+  position: absolute;
+  right: 4px;
+  bottom: 26px;
+  max-width: 80%;
+  background: var(--white);
+  color: var(--apple-red-deep);
+  font-family: "Mochiy Pop One", sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding: 7px 13px;
+  border-radius: 14px;
+  border: 2px solid var(--apple-pink);
+  box-shadow: var(--shadow);
+  transform: rotate(12deg);
+  transform-origin: right bottom;
+  z-index: 4;
+}
 .member-name {
   font-size: 1.15rem;
   color: var(--text);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
-.member-role {
-  font-size: 0.88rem;
-  color: var(--text-soft);
+/* A：名前のところに置く一言 */
+.member-note {
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--apple-green-deep);
 }
 
 /* ===== イベント・スケジュール ===== */
