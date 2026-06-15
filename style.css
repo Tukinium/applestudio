@@ -709,6 +709,9 @@ a { color: inherit; }
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
+.link-card.tiktok { border-color: #d9d9de; }
+.link-card.tiktok .link-icon { background: #010101; color: var(--white); }
+.link-icon svg { width: 26px; height: 26px; }
 .link-text { display: flex; flex-direction: column; }
 .link-label { font-weight: 700; font-size: 1.05rem; }
 .link-sub { font-size: 0.84rem; color: var(--text-soft); }
