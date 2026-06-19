@@ -125,5 +125,133 @@ document.addEventListener("DOMContentLoaded", function () {
       clone.setAttribute("aria-hidden", "true");
       marquee.appendChild(clone);
     });
+    // カードをクリックしたら、メンバーページでその人の詳細を開いた状態へ移動
+    marquee.addEventListener("click", function (e) {
+      var card = e.target.closest(".member-card");
+      if (!card) return;
+      var n = card.querySelector(".member-name");
+      if (n) location.href = "members.html?m=" + encodeURIComponent(n.textContent.trim());
+    });
+  }
+
+  // ----- メンバー詳細（カードクリックで、行の下に枠を挟んで展開） -----
+  // 画面は暗くせず、左:カード / 右:動画(X投稿) をインラインで表示する。
+  var memberGrid = document.querySelector(".member-grid");
+  if (memberGrid) {
+    var detail = null;       // 展開中のパネル
+    var currentCard = null;  // 展開中のカード
+
+    function xUrl(s) {
+      // x.com / twitter.com どちらでも、/video/1 等が付いていてもOK
+      var u = s.trim().split("?")[0];
+      var m = u.match(/(?:twitter\.com|x\.com)\/(\w+)\/status\/(\d+)/);
+      return m ? "https://twitter.com/" + m[1] + "/status/" + m[2] : u;
+    }
+    // クリックされたカードの行情報（先頭/末尾カード・最下行かどうか）
+    function rowInfo(card) {
+      var cards = memberGrid.querySelectorAll(".member-card");
+      var top = card.offsetTop;
+      var maxTop = 0;
+      cards.forEach(function (c) { if (c.offsetTop > maxTop) maxTop = c.offsetTop; });
+      var inRow = [];
+      cards.forEach(function (c) { if (Math.abs(c.offsetTop - top) < 4) inRow.push(c); });
+      return {
+        first: inRow[0],
+        last: inRow[inRow.length - 1],
+        isLastRow: Math.abs(top - maxTop) < 4
+      };
+    }
+    function buildDetail(card) {
+      var el = document.createElement("div");
+      el.className = "member-detail";
+
+      var close = document.createElement("button");
+      close.className = "member-detail-close";
+      close.setAttribute("aria-label", "閉じる");
+      close.textContent = "×";
+      close.addEventListener("click", function (e) { e.stopPropagation(); closeDetail(); });
+      el.appendChild(close);
+
+      // 左：カード（一言は消して写真＋名前のみ）
+      var left = document.createElement("div");
+      left.className = "member-detail-card";
+      var clone = card.cloneNode(true);
+      clone.classList.remove("reveal");
+      var cmClone = clone.querySelector(".member-comment"); if (cmClone) cmClone.remove();
+      var ntClone = clone.querySelector(".member-note"); if (ntClone) ntClone.remove();
+      left.appendChild(clone);
+      el.appendChild(left);
+
+      // 右：一言（動画の上）＋ 枠で囲んだ動画
+      var right = document.createElement("div");
+      right.className = "member-detail-video";
+
+      var bEl = card.querySelector(".member-comment");
+      var aEl = card.querySelector(".member-note");
+      var words = document.createElement("div");
+      words.className = "detail-words";
+      function oneLine(node) { return node ? node.innerHTML.replace(/<br\s*\/?>/gi, " ") : ""; }
+      if (aEl) words.innerHTML += '<p class="detail-a">' + oneLine(aEl) + "</p>";
+      if (bEl) words.innerHTML += '<p class="detail-b">' + oneLine(bEl) + "</p>";
+      right.appendChild(words);
+
+      var frame = document.createElement("div");
+      frame.className = "detail-video-frame";
+      var xv = card.getAttribute("data-x");
+      if (xv) {
+        frame.innerHTML =
+          '<div class="x-embed"><blockquote class="twitter-tweet" data-media-max-width="560">' +
+          '<a href="' + xUrl(xv) + '"></a></blockquote></div>';
+      } else {
+        frame.innerHTML = '<p class="video-soon">🎬 紹介動画は準備中です</p>';
+      }
+      right.appendChild(frame);
+      el.appendChild(right);
+      return el;
+    }
+    function closeDetail() {
+      if (detail) { detail.remove(); detail = null; }
+      currentCard = null;
+    }
+    function openDetail(card) {
+      closeDetail();
+      detail = buildDetail(card);
+      currentCard = card;
+      var r = rowInfo(card);
+      if (r.isLastRow) {
+        r.first.insertAdjacentElement("beforebegin", detail); // 最下行は上側に表示
+      } else {
+        r.last.insertAdjacentElement("afterend", detail);     // それ以外は行の下に表示
+      }
+      if (card.getAttribute("data-x") && window.twttr && window.twttr.widgets) {
+        window.twttr.widgets.load(detail);
+      }
+      detail.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    memberGrid.addEventListener("click", function (e) {
+      if (e.target.closest(".member-detail")) return; // パネル内のクリックは無視
+      var card = e.target.closest(".member-card");
+      if (!card) return;
+      if (card === currentCard) { closeDetail(); return; } // 同じカードで閉じる
+      openDetail(card);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeDetail();
+    });
+
+    // URLに ?m=名前 があれば、その人の詳細を開いた状態で表示（Topからの遷移用）
+    var want = new URLSearchParams(location.search).get("m");
+    if (want) {
+      var target = Array.prototype.slice
+        .call(memberGrid.querySelectorAll(".member-card"))
+        .filter(function (c) {
+          var n = c.querySelector(".member-name");
+          return n && n.textContent.trim() === want;
+        })[0];
+      if (target) {
+        setTimeout(function () { openDetail(target); }, 200);
+      }
+    }
   }
 });
