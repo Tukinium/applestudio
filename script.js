@@ -112,4 +112,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     logoWrap.addEventListener("click", playLogo); // クリックで再生
   }
+
+  // ----- メンバーの流れる表示（Top） -----
+  // index.html に直接置いたカードを、ループ用にもう1セット複製する
+  // （translateX(-50%) で途切れず無限スクロール）。fetch不要なので
+  // ファイルを直接開いても（file://）動作する。
+  var marquee = document.querySelector("[data-member-marquee]");
+  if (marquee && marquee.children.length) {
+    var originals = Array.prototype.slice.call(marquee.children);
+    originals.forEach(function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      marquee.appendChild(clone);
+    });
+  }
 });

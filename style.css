@@ -660,6 +660,38 @@ a { color: inherit; }
   box-shadow: var(--shadow-soft);
 }
 
+/* ===== メンバー（Topの流れる表示） ===== */
+.member-marquee {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  overflow: hidden;
+  padding: 12px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.member-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  padding: 0 20px;
+  animation: marquee-left 70s linear infinite;
+}
+.member-marquee:hover .member-track { animation-play-state: paused; }
+.member-track .member-card {
+  flex: 0 0 auto;
+  width: 175px;
+}
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .member-track { animation: none; }
+  .member-marquee { overflow-x: auto; }
+}
+
 /* ===== 公式リンク ===== */
 .link-grid {
   display: grid;
