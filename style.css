@@ -219,6 +219,14 @@ a { color: inherit; }
   transition: transform 0.2s ease;
 }
 .hero-logo:hover { transform: scale(1.04); }
+.hero-logo:active { transform: scale(0.97); }
+.hero-logo.is-pop { animation: logo-pop 0.45s ease; }
+@keyframes logo-pop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(0.92); }
+  70%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
 .hero-logo img {
   display: block;
   width: 100%;
@@ -782,6 +790,16 @@ a { color: inherit; }
   overflow-y: auto;
 }
 .x-embed .twitter-tweet { margin: 0 auto !important; }
+.video-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+.video-grid .x-embed {
+  flex: 1 1 380px;
+  max-width: 480px;
+}
 .video-soon {
   padding: 48px 20px;
   text-align: center;

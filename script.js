@@ -96,19 +96,50 @@ document.addEventListener("DOMContentLoaded", function () {
     var reduceMotion =
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var animBlob = null;    // 取得済みアニメWebPの中身
+    var prevUrl = null;     // 直前に使った ObjectURL（あとで解放）
 
-    function playLogo() {
-      if (reduceMotion || !animSrc) return;
-      // <img> を作り直すと、キャッシュ済みの WebP を先頭から再生できる
-      // （クエリ付与での再ダウンロードを避けるため同じURLを使う）
+    // <img> を作り直すと、アニメWebPを先頭から再生できる
+    function swapTo(src) {
       var fresh = logoImg.cloneNode(false);
-      fresh.src = animSrc;
+      fresh.src = src;
       logoImg.parentNode.replaceChild(fresh, logoImg);
       logoImg = fresh;
     }
 
+    function playLogo() {
+      if (reduceMotion || !animSrc) return;
+      // クリックの手応え（ぽよん）。アニメ完了が分かりにくくても反応が伝わる
+      logoWrap.classList.remove("is-pop");
+      void logoWrap.offsetWidth; // リフローしてアニメを必ずやり直す
+      logoWrap.classList.add("is-pop");
+
+      if (animBlob) {
+        // 同じblobから毎回新しいObjectURLを作ると、再ダウンロードなしで
+        // アニメーションを必ず先頭から再生できる（ブラウザ差を吸収）
+        var url = URL.createObjectURL(animBlob);
+        swapTo(url);
+        if (prevUrl) {
+          var old = prevUrl;
+          setTimeout(function () { URL.revokeObjectURL(old); }, 200);
+        }
+        prevUrl = url;
+      } else {
+        // blob未取得時はクエリを変えて読み込み直す（フォールバック）
+        swapTo(animSrc + (animSrc.indexOf("?") < 0 ? "?" : "&") + "t=" + Date.now());
+      }
+    }
+
     if (!reduceMotion && animSrc) {
-      playLogo(); // 訪問時に再生
+      // アニメWebPを一度だけ取得して保持。以後はネット通信なしで再生できる
+      if (window.fetch) {
+        fetch(animSrc)
+          .then(function (r) { return r.blob(); })
+          .then(function (b) { animBlob = b; playLogo(); }) // 取得でき次第、訪問時の再生
+          .catch(function () { playLogo(); });
+      } else {
+        playLogo();
+      }
     }
     logoWrap.addEventListener("click", playLogo); // クリックで再生
   }
