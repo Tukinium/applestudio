@@ -88,20 +88,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ----- ロゴアニメーション -----
   // 透過アニメーションWebP(images/logo-animation.webp)を、訪問時と
-  // クリック時に再生する。クエリを変えて読み込み直すことで毎回先頭から再生。
+  // クリック時に再生する。<img> を作り直すことで先頭から再生し、
+  // 2回目以降（クリック）はネット環境のみクエリを変えて確実に再生し直す。
   var logoWrap = document.querySelector("[data-logo-anim]");
   if (logoWrap) {
     var logoImg = logoWrap.querySelector("img");
     var animSrc = logoWrap.getAttribute("data-anim");
+    var stillSrc = logoWrap.getAttribute("data-still") ||
+      logoImg.getAttribute("src"); // 失敗時に戻す静止ロゴ
     var reduceMotion =
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var animBlob = null;    // 取得済みアニメWebPの中身
-    var prevUrl = null;     // 直前に使った ObjectURL（あとで解放）
+    var isFile = location.protocol === "file:";
+    var played = false;     // 一度でもアニメを読み込んだか
 
-    // <img> を作り直すと、アニメWebPを先頭から再生できる
-    function swapTo(src) {
+    // <img> を作り直してアニメを先頭から再生。失敗したら静止ロゴに戻す
+    // （= ロゴが消えて alt テキストになるのを防ぐ安全網）
+    function swapToAnim(src) {
       var fresh = logoImg.cloneNode(false);
+      fresh.onerror = function () {
+        fresh.onerror = null;
+        fresh.src = stillSrc; // 読み込み失敗 → 静止ロゴ
+      };
       fresh.src = src;
       logoImg.parentNode.replaceChild(fresh, logoImg);
       logoImg = fresh;
@@ -114,32 +122,19 @@ document.addEventListener("DOMContentLoaded", function () {
       void logoWrap.offsetWidth; // リフローしてアニメを必ずやり直す
       logoWrap.classList.add("is-pop");
 
-      if (animBlob) {
-        // 同じblobから毎回新しいObjectURLを作ると、再ダウンロードなしで
-        // アニメーションを必ず先頭から再生できる（ブラウザ差を吸収）
-        var url = URL.createObjectURL(animBlob);
-        swapTo(url);
-        if (prevUrl) {
-          var old = prevUrl;
-          setTimeout(function () { URL.revokeObjectURL(old); }, 200);
-        }
-        prevUrl = url;
-      } else {
-        // blob未取得時はクエリを変えて読み込み直す（フォールバック）
-        swapTo(animSrc + (animSrc.indexOf("?") < 0 ? "?" : "&") + "t=" + Date.now());
+      // 初回はキャッシュ済みの素のURLで（再ダウンロードなし・描画も確実）。
+      // 2回目以降はネット環境のみクエリを変えて先頭から再生し直す
+      // （file:// はクエリ付きだとファイルを見つけられないので付けない）。
+      var src = animSrc;
+      if (played && !isFile) {
+        src = animSrc + (animSrc.indexOf("?") < 0 ? "?" : "&") + "t=" + Date.now();
       }
+      played = true;
+      swapToAnim(src);
     }
 
     if (!reduceMotion && animSrc) {
-      // アニメWebPを一度だけ取得して保持。以後はネット通信なしで再生できる
-      if (window.fetch) {
-        fetch(animSrc)
-          .then(function (r) { return r.blob(); })
-          .then(function (b) { animBlob = b; playLogo(); }) // 取得でき次第、訪問時の再生
-          .catch(function () { playLogo(); });
-      } else {
-        playLogo();
-      }
+      playLogo(); // 訪問時に再生
     }
     logoWrap.addEventListener("click", playLogo); // クリックで再生
   }
